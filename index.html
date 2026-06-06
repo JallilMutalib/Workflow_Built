@@ -3,703 +3,788 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Social Media Scheduling Automation — Jallil Mutalib</title>
+<title>Automation Work — Jallil Mutalib</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #0d0f14; --bg2: #14171f; --surface: #1f2330;
-  --border: rgba(255,255,255,0.08); --border-accent: rgba(99,178,255,0.3);
-  --text: #eef0f5; --muted: #8891a8;
-  --accent: #63b2ff; --accent2: #a78bfa; --accent3: #34d399; --accent4: #fb923c;
-  --serif: 'DM Serif Display', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07080c;
+  --bg2:#0d0f16;
+  --surface:#12151f;
+  --surface2:#181c28;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --text:#f0f2f8;
+  --muted:#6b7490;
+  --muted2:#9aa3c0;
+  --accent:#4af0b0;
+  --accent-dim:rgba(74,240,176,0.12);
+  --accent-border:rgba(74,240,176,0.28);
+  --blue:#5b9fff;
+  --blue-dim:rgba(91,159,255,0.12);
+  --purple:#a78bfa;
+  --purple-dim:rgba(167,139,250,0.12);
+  --orange:#fb923c;
+  --orange-dim:rgba(251,146,60,0.12);
+  --pink:#f472b6;
+  --pink-dim:rgba(244,114,182,0.12);
+  --serif:'Syne',sans-serif;
+  --body:'Instrument Sans',sans-serif;
 }
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;overflow-x:hidden}
 
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(13,15,20,0.9); backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 60px;
-}
-.nav-brand { font-family: var(--serif); font-size: 18px; color: var(--accent); text-decoration: none; }
-.nav-links { display: flex; gap: 28px; }
-.nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--text); }
-
-/* HERO */
-.hero { max-width: 900px; margin: 0 auto; padding: 100px 40px 60px; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(99,178,255,0.08); border: 1px solid var(--border-accent);
-  border-radius: 20px; padding: 5px 14px;
-  font-size: 12px; font-weight: 600; color: var(--accent); letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 28px;
-}
-.hero-badge span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-h1 { font-family: var(--serif); font-size: clamp(36px,5vw,58px); line-height: 1.1; letter-spacing: -1px; color: var(--text); margin-bottom: 20px; }
-h1 em { font-style: italic; color: var(--accent); }
-.hero-sub { font-size: 17px; color: var(--muted); max-width: 580px; line-height: 1.75; margin-bottom: 40px; }
-.hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
-.meta-item { font-size: 13px; color: var(--muted); }
-.meta-item strong { color: var(--text); font-weight: 600; display: block; font-size: 15px; }
-.tools-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 36px; }
-.tag {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
-  padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--muted);
-  display: flex; align-items: center; gap: 6px; transition: border-color 0.2s, color 0.2s;
-}
-.tag:hover { border-color: rgba(99,178,255,0.4); color: var(--text); }
-.tag .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-
-/* DIVIDER */
-.divider { max-width: 900px; margin: 0 auto; padding: 0 40px; border-top: 1px solid var(--border); }
-
-/* SECTION */
-section { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
-.section-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-h2 { font-family: var(--serif); font-size: clamp(24px,3.5vw,34px); letter-spacing: -0.5px; color: var(--text); margin-bottom: 16px; }
-.section-intro { color: var(--muted); font-size: 15px; max-width: 620px; margin-bottom: 48px; line-height: 1.75; }
-
-/* WORKFLOW SVG */
-.workflow-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 48px 32px; overflow-x: auto; }
-.workflow-svg { display: block; margin: 0 auto; width: 100%; max-width: 680px; }
-.wf-node:hover rect { filter: brightness(1.15); cursor: default; }
-.n-gray   { fill: #1f2330; stroke: #3a3f50; }
-.n-teal   { fill: #0e2e28; stroke: #1d6b5e; }
-.n-purple { fill: #1e1a38; stroke: #4c3f8a; }
-.n-amber  { fill: #2a1f0a; stroke: #7a5510; }
-.n-blue   { fill: #0d1836; stroke: #1e3f8a; }
-.n-coral  { fill: #2a1210; stroke: #7a3020; }
-.n-green  { fill: #0e2418; stroke: #1a6040; }
-.wf-title { fill: #eef0f5; font-family: 'DM Sans',sans-serif; font-size: 13px; font-weight: 600; }
-.wf-sub   { fill: #8891a8; font-family: 'DM Sans',sans-serif; font-size: 11px; }
-.arr-line { stroke: #3a3f50; stroke-width: 1.5; fill: none; }
-
-/* STEP-BY-STEP */
-.steps-list { display: flex; flex-direction: column; gap: 0; margin-top: 40px; }
-.step-item {
-  display: grid; grid-template-columns: 64px 1fr;
-  gap: 0 24px; position: relative;
-}
-.step-item:not(:last-child)::before {
-  content: ''; position: absolute; left: 31px; top: 64px;
-  width: 2px; height: calc(100% - 20px);
-  background: linear-gradient(to bottom, var(--border-accent), var(--border));
-}
-.step-num-wrap { display: flex; flex-direction: column; align-items: center; padding-top: 14px; }
-.step-num {
-  width: 42px; height: 42px; border-radius: 50%;
-  background: var(--surface); border: 2px solid var(--border-accent);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--accent);
-  flex-shrink: 0; z-index: 1; position: relative;
-}
-.step-body { padding: 14px 0 40px; }
-.step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-.step-title { font-size: 16px; font-weight: 600; color: var(--text); }
-.step-badge {
-  background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25);
-  border-radius: 4px; padding: 2px 9px; font-size: 11px; font-weight: 600; color: var(--accent2);
-}
-.step-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
-.step-how {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 8px; padding: 14px 16px;
-}
-.step-how-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent4); margin-bottom: 6px; }
-.step-how-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
-.step-how code { background: rgba(99,178,255,0.1); border-radius: 3px; padding: 1px 5px; font-size: 12px; color: var(--accent); font-family: 'Courier New', monospace; }
-
-/* OUTCOMES */
-.outcomes { display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 16px; margin-top: 40px; }
-.outcome-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 24px 20px; text-align: center; }
-.outcome-value { font-family: var(--serif); font-size: 36px; color: var(--accent3); line-height: 1; margin-bottom: 6px; }
-.outcome-label { font-size: 13px; color: var(--muted); }
-
-/* CTA */
-.cta-section {
-  background: linear-gradient(135deg,rgba(99,178,255,0.06) 0%,rgba(167,139,250,0.06) 100%);
-  border: 1px solid var(--border); border-radius: 16px; padding: 56px 48px; text-align: center;
-  max-width: 820px; margin: 0 auto 80px;
-}
-.cta-section h2 { font-size: 30px; margin-bottom: 12px; }
-.cta-section p { color: var(--muted); font-size: 15px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
-.btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.2s, transform 0.15s; cursor: pointer; }
-.btn:hover { opacity: 0.85; transform: translateY(-1px); }
-.btn-primary { background: var(--accent); color: #0d0f14; }
-.btn-outline { background: transparent; border: 1px solid var(--border-accent); color: var(--accent); }
-
-/* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 28px 40px; text-align: center; font-size: 13px; color: var(--muted); }
-footer a { color: var(--accent); text-decoration: none; }
-
-/* AI CHAT WIDGET */
-#ai-chat-btn {
-  position: fixed; bottom: 28px; right: 28px; z-index: 999;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--accent); border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(99,178,255,0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-#ai-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(99,178,255,0.55); }
-#ai-chat-btn svg { width: 26px; height: 26px; fill: #0d0f14; }
-#ai-chat-btn .notif {
-  position: absolute; top: -2px; right: -2px;
-  width: 14px; height: 14px; background: var(--accent3); border-radius: 50%;
-  border: 2px solid var(--bg); font-size: 8px; font-weight: 700; color: #fff;
-  display: flex; align-items: center; justify-content: center;
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.025;
 }
 
-#ai-chat-panel {
-  position: fixed; bottom: 96px; right: 28px; z-index: 998;
-  width: 360px; max-height: 520px;
-  background: var(--bg2); border: 1px solid var(--border-accent);
-  border-radius: 16px; display: flex; flex-direction: column;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-  transform: scale(0.92) translateY(16px); opacity: 0; pointer-events: none;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(7,8,12,0.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:62px;
 }
-#ai-chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--accent),#1dd68e);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:14px;font-weight:800;color:#07080c;
+}
+.nav-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;
+  padding:6px 12px;border-radius:6px;transition:color 0.2s,background 0.2s;
+}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.nav-cta{
+  background:var(--accent)!important;color:#07080c!important;font-weight:600!important;
+  padding:7px 16px!important;border-radius:7px!important;
+}
+.nav-cta:hover{opacity:0.88;background:var(--accent)!important}
 
-.chat-header {
-  padding: 16px 20px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 10px;
+/* ── HERO ── */
+.hero{
+  position:relative;padding:110px 48px 80px;max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
 }
-.chat-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; flex-shrink: 0;
+.hero::after{
+  content:'';position:absolute;top:-100px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(74,240,176,0.07) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
 }
-.chat-header-info { flex: 1; }
-.chat-name { font-size: 14px; font-weight: 600; color: var(--text); }
-.chat-status { font-size: 11px; color: var(--accent3); display: flex; align-items: center; gap: 5px; }
-.chat-status::before { content:''; width:6px; height:6px; background:var(--accent3); border-radius:50%; display:inline-block; }
-#chat-close { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 20px; padding: 0 4px; transition: color 0.2s; }
-#chat-close:hover { color: var(--text); }
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent-dim);border:1px solid var(--accent-border);
+  border-radius:20px;padding:5px 14px;
+  font-size:11px;font-weight:600;color:var(--accent);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-eyebrow .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.85)}}
+.hero-title{
+  font-family:var(--serif);font-size:clamp(38px,5vw,60px);
+  font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:var(--text);
+  margin-bottom:22px;
+}
+.hero-title span{color:var(--accent)}
+.hero-desc{font-size:16px;color:var(--muted2);line-height:1.8;max-width:480px;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;
+  text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;
+}
+.btn-primary{background:var(--accent);color:#07080c}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted2)}
+.btn-ghost:hover{border-color:var(--border2);color:var(--text);background:rgba(255,255,255,0.04)}
+.hero-right{position:relative;z-index:1}
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:20px;transition:border-color 0.2s;
+}
+.stat-card:hover{border-color:var(--border2)}
+.stat-num{font-family:var(--serif);font-size:32px;font-weight:800;color:var(--accent);line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.4}
+.stat-card.wide{grid-column:1/-1;display:flex;align-items:center;gap:16px}
+.stat-card.wide .stat-num{font-size:22px;flex-shrink:0}
+.tools-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.tool-pill{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:20px;padding:4px 11px;font-size:11px;color:var(--muted2);font-weight:500;
+}
 
-#chat-messages {
-  flex: 1; overflow-y: auto; padding: 16px;
-  display: flex; flex-direction: column; gap: 12px;
-  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+/* ── SECTION HEADER ── */
+.section-wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+.section-header{padding:80px 0 48px}
+.section-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
 }
-.msg { display: flex; gap: 8px; align-items: flex-end; }
-.msg.user { flex-direction: row-reverse; }
-.msg-bubble {
-  max-width: 78%; padding: 10px 13px; border-radius: 12px;
-  font-size: 13px; line-height: 1.55;
-}
-.msg.bot .msg-bubble { background: var(--surface); color: var(--text); border-bottom-left-radius: 3px; }
-.msg.user .msg-bubble { background: var(--accent); color: #0d0f14; border-bottom-right-radius: 3px; font-weight: 500; }
-.msg-icon { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,var(--accent),var(--accent2)); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; }
-.typing { display: flex; gap: 4px; padding: 12px 14px; }
-.typing span { width: 7px; height: 7px; background: var(--muted); border-radius: 50%; animation: bounce 1.2s infinite; }
-.typing span:nth-child(2){ animation-delay:.2s; }
-.typing span:nth-child(3){ animation-delay:.4s; }
-@keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-7px)} }
+.section-tag::before{content:'';width:20px;height:1px;background:var(--muted)}
+.section-title{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:14px}
+.section-sub{font-size:15px;color:var(--muted2);max-width:520px;line-height:1.75}
 
-.chat-suggestions { padding: 0 16px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-.sug-btn {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 20px; padding: 5px 12px; font-size: 11px; color: var(--muted);
-  cursor: pointer; transition: border-color 0.2s, color 0.2s;
-}
-.sug-btn:hover { border-color: var(--border-accent); color: var(--text); }
+/* ── WORKFLOW CARDS ── */
+.workflow-list{display:flex;flex-direction:column;gap:0}
 
-.chat-input-row {
-  padding: 12px 16px; border-top: 1px solid var(--border);
-  display: flex; gap: 8px; align-items: center;
+.wf-card{
+  border-top:1px solid var(--border);
+  padding:56px 0;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;
+  position:relative;
 }
-#chat-input {
-  flex: 1; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 8px; padding: 9px 12px; color: var(--text);
-  font-family: var(--sans); font-size: 13px; outline: none;
-  transition: border-color 0.2s;
-}
-#chat-input:focus { border-color: var(--border-accent); }
-#chat-input::placeholder { color: var(--muted); }
-#chat-send {
-  width: 36px; height: 36px; border-radius: 8px; background: var(--accent);
-  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: opacity 0.2s;
-}
-#chat-send:hover { opacity: 0.85; }
-#chat-send svg { width: 16px; height: 16px; fill: #0d0f14; }
+.wf-card:last-child{border-bottom:1px solid var(--border)}
+.wf-card.reverse{direction:rtl}
+.wf-card.reverse>*{direction:ltr}
 
-@media (max-width:640px) {
-  nav { padding: 0 20px; } .nav-links { display: none; }
-  .hero, section { padding-left: 20px; padding-right: 20px; }
-  .cta-section { margin: 0 20px 60px; padding: 36px 24px; }
-  #ai-chat-panel { width: calc(100vw - 40px); right: 20px; }
+/* left side */
+.wf-info{}
+.wf-number{
+  font-family:var(--serif);font-size:11px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.wf-number::after{content:'';flex:1;height:1px;background:var(--border);max-width:40px}
+.wf-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;
+  letter-spacing:0.4px;margin-bottom:16px;
+}
+.wf-title{font-family:var(--serif);font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-0.5px;color:var(--text);margin-bottom:12px;line-height:1.2}
+.wf-desc{font-size:14px;color:var(--muted2);line-height:1.75;margin-bottom:24px}
+
+.wf-nodes{margin-bottom:24px}
+.wf-nodes-label{font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.nodes-flow{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.node-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:6px;padding:5px 10px;font-size:12px;color:var(--muted2);font-weight:500;
+}
+.node-arrow{color:var(--muted);font-size:11px;flex-shrink:0}
+
+.wf-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:28px}
+.wf-tag{
+  border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;
+}
+
+.wf-link{
+  display:inline-flex;align-items:center;gap:7px;
+  color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;
+  padding:10px 20px;border:1px solid var(--accent-border);border-radius:8px;
+  background:var(--accent-dim);transition:all 0.2s;
+}
+.wf-link:hover{background:rgba(74,240,176,0.18);border-color:rgba(74,240,176,0.45)}
+.wf-link-dead{
+  display:inline-flex;align-items:center;gap:7px;
+  color:var(--muted);font-size:13px;font-weight:600;
+  padding:10px 20px;border:1px solid var(--border);border-radius:8px;
+  background:transparent;
+}
+
+/* right side: diagram canvas */
+.wf-diagram{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;position:relative;
+}
+.wf-diagram-header{
+  padding:14px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.wf-diagram-dot{width:10px;height:10px;border-radius:50%}
+.wf-diagram-title{font-size:12px;color:var(--muted);font-weight:500;margin-left:4px}
+.wf-diagram svg{display:block;width:100%;padding:28px}
+
+/* ── HOW-TO SECTION ── */
+.howto-section{
+  background:var(--surface);border-radius:20px;
+  border:1px solid var(--border);overflow:hidden;margin-bottom:80px;
+}
+.howto-header{
+  padding:40px 48px;border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(74,240,176,0.04),rgba(91,159,255,0.04));
+}
+.howto-title{font-family:var(--serif);font-size:26px;font-weight:800;letter-spacing:-0.5px;color:var(--text);margin-bottom:8px}
+.howto-sub{font-size:14px;color:var(--muted2)}
+.howto-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:0;
+}
+.howto-step{
+  padding:32px 36px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+}
+.howto-step:hover{background:rgba(255,255,255,0.02)}
+.howto-step:last-child,.howto-step:nth-child(3n){border-right:none}
+.howto-num{
+  font-family:var(--serif);font-size:38px;font-weight:800;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.1);
+  line-height:1;margin-bottom:12px;
+}
+.howto-step-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:7px}
+.howto-step-desc{font-size:13px;color:var(--muted2);line-height:1.65}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);padding:40px 48px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-size:13px;color:var(--muted)}
+.footer-left a{color:var(--accent);text-decoration:none}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--text)}
+
+/* ── SCROLL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .hero{grid-template-columns:1fr;gap:48px;padding:80px 24px 60px}
+  .hero::after{display:none}
+  .section-wrap{padding:0 24px}
+  .wf-card{grid-template-columns:1fr;gap:32px;padding:40px 0}
+  .wf-card.reverse{direction:ltr}
+  .howto-header{padding:28px 24px}
+  .howto-step{padding:24px}
+  footer{padding:28px 24px}
+  .nav-links .nav-links-inner{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="nav-brand" href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">Jallil Mutalib</a>
+  <a class="nav-brand" href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">
+    <div class="nav-logo">JM</div>
+    <span class="nav-name">Jallil Mutalib</span>
+  </a>
   <div class="nav-links">
-    <a href="#workflow">Workflow</a>
-    <a href="#steps">Step-by-Step</a>
-    <a href="#outcomes">Results</a>
-    <a href="#contact">Contact</a>
+    <a href="#workflows">Workflows</a>
+    <a href="#howto">How It Works</a>
+    <a href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">Portfolio</a>
+    <a href="mailto:jallilmutalib@gmail.com" class="nav-cta btn">Hire Me</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge"><span></span>n8n Automation Portfolio</div>
-  <h1>Social Media Scheduling<br/><em>Automated End-to-End</em></h1>
-  <p class="hero-sub">
-    A production-ready n8n workflow that reads a content queue from Google Sheets, generates AI-optimised captions, and automatically publishes to Facebook and Instagram — then logs every result back to the sheet.
-  </p>
-  <div class="hero-meta">
-    <div class="meta-item"><strong>6 Nodes</strong>Full workflow</div>
-    <div class="meta-item"><strong>2 Platforms</strong>Facebook · Instagram</div>
-    <div class="meta-item"><strong>n8n Self-Hosted</strong>Zero cloud cost</div>
-    <div class="meta-item"><strong>AI-Powered</strong>OpenAI captions</div>
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow"><span class="dot"></span>Automation Showcase</div>
+    <h1 class="hero-title">Real Workflows.<br/><span>Built to Deploy.</span></h1>
+    <p class="hero-desc">A collection of production-grade automation systems I've built from scratch — each one solving a real business problem with zero recurring software costs.</p>
+    <div class="hero-actions">
+      <a href="#workflows" class="btn btn-primary">View All Workflows ↓</a>
+      <a href="mailto:jallilmutalib@gmail.com" class="btn btn-ghost">Get a Custom Build</a>
+    </div>
   </div>
-  <div class="tools-row">
-    <div class="tag"><span class="dot" style="background:#f97316"></span>n8n</div>
-    <div class="tag"><span class="dot" style="background:#10b981"></span>Google Sheets</div>
-    <div class="tag"><span class="dot" style="background:#8b5cf6"></span>OpenAI GPT-4o</div>
-    <div class="tag"><span class="dot" style="background:#1877f2"></span>Facebook API</div>
-    <div class="tag"><span class="dot" style="background:#ec4899"></span>Meta Graph API</div>
-    <div class="tag"><span class="dot" style="background:#6b7280"></span>Cron Trigger</div>
+  <div class="hero-right reveal">
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Live automation workflows built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Tools mastered: n8n, Make, Zapier</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">SaaS fees using self-hosted n8n</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">OpenAI & Gemini integrated in workflows</div>
+      </div>
+      <div class="stat-card wide">
+        <div class="stat-num">Stack</div>
+        <div>
+          <div class="tools-cloud">
+            <span class="tool-pill">n8n</span><span class="tool-pill">Make.com</span><span class="tool-pill">OpenAI</span><span class="tool-pill">Gemini</span><span class="tool-pill">Google Sheets</span><span class="tool-pill">Gmail</span><span class="tool-pill">Notion</span><span class="tool-pill">Calendly</span><span class="tool-pill">Tally</span><span class="tool-pill">Webhooks</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- WORKFLOW DIAGRAM -->
-<section id="workflow">
-  <div class="section-label">Visual Overview</div>
-  <h2>Workflow Architecture</h2>
-  <p class="section-intro">Six nodes handle the full lifecycle — from scheduled trigger to published post and logged result. Both Facebook and Instagram get AI-tailored captions via a Switch node.</p>
-
-  <div class="workflow-wrap">
-    <svg class="workflow-svg" viewBox="0 0 680 560" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M2 1L8 5L2 9" fill="none" stroke="#3a3f50" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </marker>
-      </defs>
-
-      <!-- Node 1: Schedule Trigger -->
-      <g class="wf-node">
-        <rect class="n-gray" x="240" y="20" width="200" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="43" text-anchor="middle" dominant-baseline="central">⏰ Schedule trigger</text>
-        <text class="wf-sub" x="340" y="61" text-anchor="middle" dominant-baseline="central">Runs daily at 9 AM</text>
-      </g>
-      <line x1="340" y1="72" x2="340" y2="108" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 2: Read Google Sheets -->
-      <g class="wf-node">
-        <rect class="n-teal" x="220" y="108" width="240" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="131" text-anchor="middle" dominant-baseline="central">📋 Read Google Sheets</text>
-        <text class="wf-sub" x="340" y="149" text-anchor="middle" dominant-baseline="central">Fetch pending posts queue</text>
-      </g>
-      <line x1="340" y1="160" x2="340" y2="196" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 3: Loop -->
-      <g class="wf-node">
-        <rect class="n-purple" x="230" y="196" width="220" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="219" text-anchor="middle" dominant-baseline="central">🔁 Loop over items</text>
-        <text class="wf-sub" x="340" y="237" text-anchor="middle" dominant-baseline="central">Process each row one by one</text>
-      </g>
-      <line x1="340" y1="248" x2="340" y2="284" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 4: AI Caption -->
-      <g class="wf-node">
-        <rect class="n-amber" x="210" y="284" width="260" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="307" text-anchor="middle" dominant-baseline="central">🤖 AI caption generator</text>
-        <text class="wf-sub" x="340" y="325" text-anchor="middle" dominant-baseline="central">OpenAI GPT-4o per platform</text>
-      </g>
-      <line x1="340" y1="336" x2="340" y2="372" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 5: Switch -->
-      <g class="wf-node">
-        <rect class="n-gray" x="240" y="372" width="200" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="395" text-anchor="middle" dominant-baseline="central">🔀 Switch by platform</text>
-        <text class="wf-sub" x="340" y="413" text-anchor="middle" dominant-baseline="central">Routes to correct channel</text>
-      </g>
-
-      <!-- Branch left: Facebook -->
-      <path d="M270 424 L270 456 L160 456 L160 476" class="arr-line" marker-end="url(#ar)"/>
-      <!-- Branch right: Instagram -->
-      <path d="M410 424 L410 456 L520 456 L520 476" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 6a: Facebook -->
-      <g class="wf-node">
-        <rect class="n-blue" x="80" y="476" width="160" height="52" rx="8"/>
-        <text class="wf-title" x="160" y="499" text-anchor="middle" dominant-baseline="central">📘 Post to Facebook</text>
-        <text class="wf-sub" x="160" y="517" text-anchor="middle" dominant-baseline="central">Facebook Graph API</text>
-      </g>
-
-      <!-- Node 6b: Instagram -->
-      <g class="wf-node">
-        <rect class="n-coral" x="440" y="476" width="160" height="52" rx="8"/>
-        <text class="wf-title" x="520" y="499" text-anchor="middle" dominant-baseline="central">📸 Post to Instagram</text>
-        <text class="wf-sub" x="520" y="517" text-anchor="middle" dominant-baseline="central">Meta Graph API</text>
-      </g>
-
-      <!-- Merge both to Node 7 -->
-      <path d="M160 528 L160 556 L219 556" class="arr-line" marker-end="url(#ar)"/>
-      <path d="M520 528 L520 556 L461 556" class="arr-line" marker-end="url(#ar)"/>
-
-      <!-- Node 7: Log to Sheets -->
-      <g class="wf-node">
-        <rect class="n-green" x="220" y="496" width="240" height="52" rx="8"/>
-        <text class="wf-title" x="340" y="519" text-anchor="middle" dominant-baseline="central">✅ Log to Google Sheets</text>
-        <text class="wf-sub" x="340" y="537" text-anchor="middle" dominant-baseline="central">Mark post as "Published"</text>
-      </g>
-    </svg>
+<!-- WORKFLOWS SECTION -->
+<div class="section-wrap" id="workflows">
+  <div class="section-header reveal">
+    <div class="section-tag">Automation Work</div>
+    <h2 class="section-title">Featured Workflows</h2>
+    <p class="section-sub">Four complete automation systems — built, tested, and documented. Each one is fully replicable for any client business.</p>
   </div>
-</section>
 
-<div class="divider"></div>
+  <div class="workflow-list">
 
-<!-- STEP BY STEP -->
-<section id="steps">
-  <div class="section-label">Step-by-Step Guide</div>
-  <h2>How to Build This in n8n</h2>
-  <p class="section-intro">Each node explained with exactly what to configure — so you can replicate or customise this workflow from scratch.</p>
+    <!-- ── WORKFLOW 1: Smart Lead CRM (n8n) ── -->
+    <div class="wf-card reveal">
+      <div class="wf-info">
+        <div class="wf-number">01 / n8n</div>
+        <div class="wf-badge" style="background:rgba(74,240,176,0.1);border:1px solid rgba(74,240,176,0.25);color:var(--accent)">✅ Succeeded · ID#216 · 10.2s</div>
+        <h3 class="wf-title">Lead Capture → Email + Notion CRM</h3>
+        <p class="wf-desc">When a new row is added to Google Sheets, the workflow automatically extracts the lead's details, routes them by service type using a Switch node, sends a personalised Gmail follow-up for each category (VA, Automation, Design, Other), and creates a database entry in Notion — all in under 15 seconds.</p>
 
-  <div class="steps-list">
-
-    <!-- Step 1 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">1</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">⏰ Schedule Trigger</span>
-          <span class="step-badge">Trigger Node</span>
-        </div>
-        <p class="step-desc">This is the starting point of the workflow. It fires automatically at a set time every day without any manual action. In n8n, use the built-in Schedule Trigger node.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add a <code>Schedule Trigger</code> node → set Mode to <code>Cron</code> → enter the expression <code>0 9 * * *</code> for 9 AM daily (adjust to your timezone). No credentials needed. This node has no inputs — it just kicks everything off on time.
+        <div class="wf-nodes">
+          <div class="wf-nodes-label">Node Flow</div>
+          <div class="nodes-flow">
+            <span class="node-chip">⚡ Google Sheets Trigger</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">✏️ Set Lead Fields</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🔀 Route by Service Type</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📧 Gmail (×4 routes)</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📋 Create Notion Page</span>
           </div>
         </div>
+
+        <div class="wf-tags">
+          <span class="wf-tag" style="background:rgba(74,240,176,0.1);border:1px solid rgba(74,240,176,0.2);color:var(--accent)">n8n</span>
+          <span class="wf-tag" style="background:rgba(91,159,255,0.1);border:1px solid rgba(91,159,255,0.2);color:var(--blue)">Google Sheets</span>
+          <span class="wf-tag" style="background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pink)">Gmail</span>
+          <span class="wf-tag" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted2)">Notion</span>
+          <span class="wf-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:var(--purple)">Switch Node</span>
+        </div>
+        <a href="https://jallilmutalib.github.io/Social-Media-Workflow/" target="_blank" class="wf-link">View Full Portfolio →</a>
+      </div>
+
+      <div class="wf-diagram">
+        <div class="wf-diagram-header">
+          <div class="wf-diagram-dot" style="background:#ff5f57"></div>
+          <div class="wf-diagram-dot" style="background:#febc2e"></div>
+          <div class="wf-diagram-dot" style="background:#28c840"></div>
+          <span class="wf-diagram-title">n8n · Lead CRM Workflow</span>
+        </div>
+        <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg" style="padding:24px">
+          <defs>
+            <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#2a3040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Trigger -->
+          <rect x="120" y="10" width="160" height="44" rx="8" fill="#0e2518" stroke="#1a6040"/>
+          <text x="200" y="29" text-anchor="middle" fill="#4af0b0" font-family="Instrument Sans" font-size="11" font-weight="600">⚡ Google Sheets Trigger</text>
+          <text x="200" y="44" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="10">rowAdded</text>
+          <line x1="200" y1="54" x2="200" y2="76" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr1)"/>
+          <!-- Set Fields -->
+          <rect x="130" y="76" width="140" height="40" rx="8" fill="#1a1c2e" stroke="#3a3f60"/>
+          <text x="200" y="93" text-anchor="middle" fill="#9aa3c0" font-family="Instrument Sans" font-size="11" font-weight="600">✏️ Set Lead Fields</text>
+          <text x="200" y="107" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="10">manual mapping</text>
+          <line x1="200" y1="116" x2="200" y2="138" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr1)"/>
+          <!-- Switch -->
+          <rect x="120" y="138" width="160" height="44" rx="8" fill="#1a1428" stroke="#4a3a70"/>
+          <text x="200" y="157" text-anchor="middle" fill="#a78bfa" font-family="Instrument Sans" font-size="11" font-weight="600">🔀 Route by Service Type</text>
+          <text x="200" y="172" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="10">mode: Rules</text>
+          <!-- 4 branches -->
+          <path d="M155 182 L80 182 L80 210" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <path d="M180 182 L160 182 L160 210" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <path d="M220 182 L240 182 L240 210" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <path d="M245 182 L320 182 L320 210" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <!-- 4 Gmail nodes -->
+          <rect x="32" y="210" width="96" height="38" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="80" y="226" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 VA Services</text>
+          <text x="80" y="240" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">send: message</text>
+          <rect x="110" y="210" width="96" height="38" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="158" y="226" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Automation</text>
+          <text x="158" y="240" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">send: message</text>
+          <rect x="190" y="210" width="96" height="38" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="238" y="226" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Design</text>
+          <text x="238" y="240" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">send: message</text>
+          <rect x="272" y="210" width="96" height="38" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="320" y="226" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Other</text>
+          <text x="320" y="240" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">send: message</text>
+          <!-- All merge to Notion -->
+          <path d="M80 248 L80 288 L200 288" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <path d="M158 248 L158 268 L200 268 L200 288" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <path d="M238 248 L238 268 L200 268" stroke="#2a3040" stroke-width="1.5" fill="none"/>
+          <path d="M320 248 L320 288 L200 288" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr1)"/>
+          <rect x="120" y="288" width="160" height="40" rx="8" fill="#101820" stroke="#1a4060"/>
+          <text x="200" y="305" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="11" font-weight="600">📋 Create Notion Page</text>
+          <text x="200" y="319" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="10">create: databasePage</text>
+        </svg>
       </div>
     </div>
 
-    <!-- Step 2 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">2</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">📋 Read Google Sheets</span>
-          <span class="step-badge">Google Sheets Node</span>
-        </div>
-        <p class="step-desc">Pulls your content calendar from Google Sheets. Your sheet should have columns: Topic, Platform, Tone, Status. This node reads only rows where Status = "Pending".</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add a <code>Google Sheets</code> node → authenticate via OAuth2 → set Operation to <code>Get Many Rows</code> → paste your Sheet ID → set Filters: <code>Status</code> equals <code>Pending</code>. This returns all pending posts as individual items for the loop.
+    <!-- ── WORKFLOW 2: AI Booking Agent ── -->
+    <div class="wf-card reverse reveal">
+      <div class="wf-info">
+        <div class="wf-number">02 / n8n</div>
+        <div class="wf-badge" style="background:rgba(91,159,255,0.1);border:1px solid rgba(91,159,255,0.25);color:var(--blue)">🤖 AI Agent · Gemini Powered</div>
+        <h3 class="wf-title">AI Booking Agent (Chat → Calendar)</h3>
+        <p class="wf-desc">A conversational AI agent that understands natural language meeting requests and automatically creates Google Calendar events. Powered by Google Gemini Chat Model with Simple Memory to maintain context across the conversation, and a Calendar tool to execute bookings in real-time.</p>
+
+        <div class="wf-nodes">
+          <div class="wf-nodes-label">Node Flow</div>
+          <div class="nodes-flow">
+            <span class="node-chip">💬 When Chat Message Received</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🤖 AI Agent</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🧠 Gemini Chat Model</span>
+            <span class="node-arrow">+</span>
+            <span class="node-chip">💾 Simple Memory</span>
+            <span class="node-arrow">+</span>
+            <span class="node-chip">📅 Create Google Calendar Event</span>
           </div>
         </div>
+
+        <div class="wf-tags">
+          <span class="wf-tag" style="background:rgba(74,240,176,0.1);border:1px solid rgba(74,240,176,0.2);color:var(--accent)">n8n</span>
+          <span class="wf-tag" style="background:rgba(91,159,255,0.1);border:1px solid rgba(91,159,255,0.2);color:var(--blue)">Google Gemini</span>
+          <span class="wf-tag" style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.2);color:var(--orange)">AI Agent</span>
+          <span class="wf-tag" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted2)">Google Calendar</span>
+          <span class="wf-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:var(--purple)">Simple Memory</span>
+        </div>
+        <div class="wf-link-dead">🔧 Detailed page coming soon</div>
+      </div>
+
+      <div class="wf-diagram">
+        <div class="wf-diagram-header">
+          <div class="wf-diagram-dot" style="background:#ff5f57"></div>
+          <div class="wf-diagram-dot" style="background:#febc2e"></div>
+          <div class="wf-diagram-dot" style="background:#28c840"></div>
+          <span class="wf-diagram-title">n8n · AI Booking Agent</span>
+        </div>
+        <svg viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg" style="padding:24px">
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#2a3040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Chat Trigger -->
+          <rect x="30" y="90" width="130" height="50" rx="10" fill="#1a1c2e" stroke="#3a3f60"/>
+          <text x="95" y="111" text-anchor="middle" fill="#9aa3c0" font-family="Instrument Sans" font-size="11" font-weight="600">💬 When Chat</text>
+          <text x="95" y="126" text-anchor="middle" fill="#9aa3c0" font-family="Instrument Sans" font-size="11" font-weight="600">Message Received</text>
+          <line x1="160" y1="115" x2="190" y2="115" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <!-- AI Agent -->
+          <rect x="190" y="80" width="130" height="70" rx="10" fill="#1a1428" stroke="#4a3a70"/>
+          <text x="255" y="105" text-anchor="middle" fill="#a78bfa" font-family="Instrument Sans" font-size="12" font-weight="700">🤖 AI Agent</text>
+          <line x1="255" y1="110" x2="230" y2="155" stroke="#2a3040" stroke-width="1.2" stroke-dasharray="4,3"/>
+          <text x="222" y="135" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Chat Model</text>
+          <line x1="255" y1="110" x2="255" y2="160" stroke="#2a3040" stroke-width="1.2" stroke-dasharray="4,3"/>
+          <text x="260" y="147" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Memory</text>
+          <line x1="255" y1="110" x2="280" y2="155" stroke="#2a3040" stroke-width="1.2" stroke-dasharray="4,3"/>
+          <text x="295" y="141" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Tool</text>
+          <!-- Gemini -->
+          <circle cx="196" cy="195" r="30" fill="#101820" stroke="#1a4030"/>
+          <text x="196" y="191" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="9" font-weight="600">Gemini</text>
+          <text x="196" y="204" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Chat Model</text>
+          <!-- Memory -->
+          <circle cx="255" cy="195" r="26" fill="#101820" stroke="#1a4030"/>
+          <text x="255" y="191" text-anchor="middle" fill="#9aa3c0" font-family="Instrument Sans" font-size="9" font-weight="600">Simple</text>
+          <text x="255" y="204" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Memory</text>
+          <!-- Calendar -->
+          <circle cx="314" cy="195" r="30" fill="#0e1a10" stroke="#1a5020"/>
+          <text x="314" y="191" text-anchor="middle" fill="#4af0b0" font-family="Instrument Sans" font-size="9" font-weight="600">📅 Create</text>
+          <text x="314" y="204" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Calendar Event</text>
+        </svg>
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">3</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">🔁 Loop Over Items</span>
-          <span class="step-badge">SplitInBatches Node</span>
-        </div>
-        <p class="step-desc">Processes each pending post one by one instead of all at once. This prevents API rate-limit errors when publishing to Facebook and Instagram simultaneously.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add a <code>SplitInBatches</code> node → set Batch Size to <code>1</code>. Connect the "loop" output back to the AI Caption node, and the "done" output to the end (or a notification step). This ensures posts are processed sequentially, one at a time.
+    <!-- ── WORKFLOW 3: AI Lead Qualification ── -->
+    <div class="wf-card reveal">
+      <div class="wf-info">
+        <div class="wf-number">03 / n8n</div>
+        <div class="wf-badge" style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.25);color:var(--orange)">🔥 Hot / Warm / Cold Scoring</div>
+        <h3 class="wf-title">Lead Capture → AI Qualification → Auto Follow-up</h3>
+        <p class="wf-desc">A Tally form webhook triggers the full pipeline: fields are extracted, OpenAI scores the lead as Hot/Warm/Cold, a Code node parses the score, and the Switch routes to three separate Gmail follow-ups — a calendar booking link for Hot leads, a nurture email for Warm, and a polite no for Cold. Google Sheets logs every result.</p>
+
+        <div class="wf-nodes">
+          <div class="wf-nodes-label">Node Flow</div>
+          <div class="nodes-flow">
+            <span class="node-chip">🔗 Webhook (Tally)</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">✏️ Set Fields</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">⚡ Respond to Webhook</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🤖 OpenAI Score Lead</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">{ } Code – Parse Score</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🔀 Switch by Score</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📧 Gmail (Hot/Warm/Cold)</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📊 Log to Sheets</span>
           </div>
         </div>
+
+        <div class="wf-tags">
+          <span class="wf-tag" style="background:rgba(74,240,176,0.1);border:1px solid rgba(74,240,176,0.2);color:var(--accent)">n8n</span>
+          <span class="wf-tag" style="background:rgba(251,146,60,0.1);border:1px solid rgba(251,146,60,0.2);color:var(--orange)">OpenAI</span>
+          <span class="wf-tag" style="background:rgba(91,159,255,0.1);border:1px solid rgba(91,159,255,0.2);color:var(--blue)">Tally Form</span>
+          <span class="wf-tag" style="background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pink)">Gmail</span>
+          <span class="wf-tag" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted2)">Google Sheets</span>
+          <span class="wf-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:var(--purple)">Webhook</span>
+        </div>
+        <div class="wf-link-dead">🔧 Detailed page coming soon</div>
+      </div>
+
+      <div class="wf-diagram">
+        <div class="wf-diagram-header">
+          <div class="wf-diagram-dot" style="background:#ff5f57"></div>
+          <div class="wf-diagram-dot" style="background:#febc2e"></div>
+          <div class="wf-diagram-dot" style="background:#28c840"></div>
+          <span class="wf-diagram-title">n8n · AI Lead Qualification</span>
+        </div>
+        <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" style="padding:24px">
+          <defs>
+            <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#2a3040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Webhook -->
+          <rect x="130" y="8" width="150" height="38" rx="8" fill="#1a100c" stroke="#603020"/>
+          <text x="205" y="23" text-anchor="middle" fill="#fb923c" font-family="Instrument Sans" font-size="11" font-weight="600">🔗 Webhook – Lead Capture</text>
+          <text x="205" y="38" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">POST via Tally / ngrok</text>
+          <line x1="205" y1="46" x2="205" y2="64" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr3)"/>
+          <!-- Set Fields -->
+          <rect x="130" y="64" width="150" height="36" rx="8" fill="#1a1c2e" stroke="#3a3f60"/>
+          <text x="205" y="79" text-anchor="middle" fill="#9aa3c0" font-family="Instrument Sans" font-size="11" font-weight="600">✏️ Set – Extract Lead Fields</text>
+          <text x="205" y="93" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">manual mapping</text>
+          <line x1="205" y1="100" x2="205" y2="116" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr3)"/>
+          <!-- OpenAI -->
+          <rect x="120" y="116" width="170" height="36" rx="8" fill="#1a1428" stroke="#4a3a70"/>
+          <text x="205" y="131" text-anchor="middle" fill="#a78bfa" font-family="Instrument Sans" font-size="11" font-weight="600">🤖 OpenAI – Score Lead</text>
+          <text x="205" y="145" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Hot / Warm / Cold</text>
+          <line x1="205" y1="152" x2="205" y2="168" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr3)"/>
+          <!-- Code node -->
+          <rect x="130" y="168" width="150" height="36" rx="8" fill="#181410" stroke="#504020"/>
+          <text x="205" y="183" text-anchor="middle" fill="#fbbf24" font-family="Instrument Sans" font-size="11" font-weight="600">{ } Code – Parse AI Score</text>
+          <text x="205" y="197" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">extract score string</text>
+          <line x1="205" y1="204" x2="205" y2="220" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr3)"/>
+          <!-- Switch -->
+          <rect x="130" y="220" width="150" height="36" rx="8" fill="#1a1428" stroke="#4a3a70"/>
+          <text x="205" y="235" text-anchor="middle" fill="#a78bfa" font-family="Instrument Sans" font-size="11" font-weight="600">🔀 Switch – Route by Score</text>
+          <text x="205" y="249" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">mode: Rules</text>
+          <!-- 3 branches -->
+          <path d="M158 256 L80 256 L80 278" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr3)"/>
+          <line x1="205" y1="256" x2="205" y2="278" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr3)"/>
+          <path d="M252 256 L320 256 L320 278" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr3)"/>
+          <!-- 3 Gmail nodes -->
+          <rect x="34" y="278" width="92" height="36" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="80" y="293" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Hot Lead</text>
+          <text x="80" y="307" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Book Call</text>
+          <rect x="158" y="278" width="92" height="36" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="204" y="293" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Warm Lead</text>
+          <text x="204" y="307" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Nurture</text>
+          <rect x="274" y="278" width="92" height="36" rx="7" fill="#1a0e14" stroke="#602040"/>
+          <text x="320" y="293" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="10" font-weight="600">📧 Cold Lead</text>
+          <text x="320" y="307" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">Low Priority</text>
+          <!-- Log to Sheets -->
+          <path d="M80 314 L80 338 L170 338" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr3)"/>
+          <path d="M204 314 L204 338" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr3)"/>
+          <path d="M320 314 L320 338 L240 338" stroke="#2a3040" stroke-width="1.5" fill="none" marker-end="url(#arr3)"/>
+          <rect x="130" y="338" width="150" height="34" rx="8" fill="#0e2518" stroke="#1a6040"/>
+          <text x="205" y="353" text-anchor="middle" fill="#4af0b0" font-family="Instrument Sans" font-size="11" font-weight="600">📊 Log to Google Sheets</text>
+          <text x="205" y="366" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="9">score + timestamp</text>
+        </svg>
       </div>
     </div>
 
-    <!-- Step 4 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">4</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">🤖 AI Caption Generator</span>
-          <span class="step-badge">OpenAI Node</span>
-        </div>
-        <p class="step-desc">Sends the Topic and Platform fields to OpenAI GPT-4o. The AI writes a platform-appropriate caption — casual and emoji-friendly for Facebook, visually descriptive with hashtags for Instagram.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add an <code>OpenAI</code> node → connect your API key → set Model to <code>gpt-4o</code> → set the prompt to: <code>"Write a social media caption for {{ $json.Topic }} optimised for {{ $json.Platform }}. Tone: {{ $json.Tone }}."</code> The output will be the AI-written caption stored in the response field.
+    <!-- ── WORKFLOW 4: Make.com CRM ── -->
+    <div class="wf-card reverse reveal">
+      <div class="wf-info">
+        <div class="wf-number">04 / Make.com</div>
+        <div class="wf-badge" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);color:var(--purple)">🔁 Every 15 min · Multi-route</div>
+        <h3 class="wf-title">Google Sheets → Multi-Route Gmail + Notion CRM</h3>
+        <p class="wf-desc">Built entirely in Make.com — watches Google Sheets every 15 minutes for new rows, routes each lead through a Router module based on service interest (VA, Social Media, Automation, Web Dev), sends a tailored Gmail, and creates a Notion database entry in the correct category. All four routes run in parallel.</p>
+
+        <div class="wf-nodes">
+          <div class="wf-nodes-label">Module Flow</div>
+          <div class="nodes-flow">
+            <span class="node-chip">📊 Google Sheets Watch</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">🔀 Router (4 routes)</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📧 Gmail Send (×4)</span>
+            <span class="node-arrow">→</span>
+            <span class="node-chip">📋 Notion Create (×4)</span>
           </div>
         </div>
+
+        <div class="wf-tags">
+          <span class="wf-tag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:var(--purple)">Make.com</span>
+          <span class="wf-tag" style="background:rgba(91,159,255,0.1);border:1px solid rgba(91,159,255,0.2);color:var(--blue)">Google Sheets</span>
+          <span class="wf-tag" style="background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);color:var(--pink)">Gmail</span>
+          <span class="wf-tag" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted2)">Notion</span>
+          <span class="wf-tag" style="background:rgba(74,240,176,0.1);border:1px solid rgba(74,240,176,0.2);color:var(--accent)">Router Module</span>
+        </div>
+        <div class="wf-link-dead">🔧 Detailed page coming soon</div>
+      </div>
+
+      <div class="wf-diagram">
+        <div class="wf-diagram-header">
+          <div class="wf-diagram-dot" style="background:#ff5f57"></div>
+          <div class="wf-diagram-dot" style="background:#febc2e"></div>
+          <div class="wf-diagram-dot" style="background:#28c840"></div>
+          <span class="wf-diagram-title">Make.com · Multi-Route CRM</span>
+        </div>
+        <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style="padding:24px">
+          <defs>
+            <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="#2a3040" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Google Sheets -->
+          <circle cx="60" cy="158" r="32" fill="#0e2518" stroke="#1a6040"/>
+          <text x="60" y="153" text-anchor="middle" fill="#4af0b0" font-family="Instrument Sans" font-size="9" font-weight="700">Google</text>
+          <text x="60" y="165" text-anchor="middle" fill="#4af0b0" font-family="Instrument Sans" font-size="9" font-weight="700">Sheets</text>
+          <text x="60" y="178" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Watch Rows</text>
+          <line x1="92" y1="158" x2="118" y2="158" stroke="#2a3040" stroke-width="1.5" marker-end="url(#arr4)"/>
+          <!-- Router -->
+          <circle cx="148" cy="158" r="28" fill="#1a1428" stroke="#4a3a70"/>
+          <text x="148" y="154" text-anchor="middle" fill="#a78bfa" font-family="Instrument Sans" font-size="10" font-weight="700">Router</text>
+          <text x="148" y="168" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">4 routes</text>
+          <!-- 4 route lines -->
+          <path d="M172 140 L220 60" stroke="#2a3040" stroke-width="1.3" fill="none" marker-end="url(#arr4)"/>
+          <path d="M176 148 L220 115" stroke="#2a3040" stroke-width="1.3" fill="none" marker-end="url(#arr4)"/>
+          <path d="M176 168 L220 200" stroke="#2a3040" stroke-width="1.3" fill="none" marker-end="url(#arr4)"/>
+          <path d="M172 176 L220 255" stroke="#2a3040" stroke-width="1.3" fill="none" marker-end="url(#arr4)"/>
+          <!-- Route labels -->
+          <text x="192" y="52" fill="#6b7490" font-family="Instrument Sans" font-size="8">VA Services</text>
+          <text x="192" y="106" fill="#6b7490" font-family="Instrument Sans" font-size="8">Social Media</text>
+          <text x="192" y="196" fill="#6b7490" font-family="Instrument Sans" font-size="8">Automation</text>
+          <text x="192" y="252" fill="#6b7490" font-family="Instrument Sans" font-size="8">Web Dev</text>
+          <!-- 4 Gmail circles -->
+          <circle cx="240" cy="55" r="22" fill="#1a0e14" stroke="#602040"/>
+          <text x="240" y="51" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="9" font-weight="600">📧</text>
+          <text x="240" y="63" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Gmail</text>
+          <circle cx="240" cy="118" r="22" fill="#1a0e14" stroke="#602040"/>
+          <text x="240" y="114" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="9" font-weight="600">📧</text>
+          <text x="240" y="126" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Gmail</text>
+          <circle cx="240" cy="203" r="22" fill="#1a0e14" stroke="#602040"/>
+          <text x="240" y="199" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="9" font-weight="600">📧</text>
+          <text x="240" y="211" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Gmail</text>
+          <circle cx="240" cy="258" r="22" fill="#1a0e14" stroke="#602040"/>
+          <text x="240" y="254" text-anchor="middle" fill="#f472b6" font-family="Instrument Sans" font-size="9" font-weight="600">📧</text>
+          <text x="240" y="266" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Gmail</text>
+          <!-- → Notion -->
+          <line x1="262" y1="55" x2="310" y2="55" stroke="#2a3040" stroke-width="1.3" marker-end="url(#arr4)"/>
+          <line x1="262" y1="118" x2="310" y2="118" stroke="#2a3040" stroke-width="1.3" marker-end="url(#arr4)"/>
+          <line x1="262" y1="203" x2="310" y2="203" stroke="#2a3040" stroke-width="1.3" marker-end="url(#arr4)"/>
+          <line x1="262" y1="258" x2="310" y2="258" stroke="#2a3040" stroke-width="1.3" marker-end="url(#arr4)"/>
+          <!-- 4 Notion circles -->
+          <circle cx="330" cy="55" r="22" fill="#101820" stroke="#1a4060"/>
+          <text x="330" y="51" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="9" font-weight="600">📋</text>
+          <text x="330" y="63" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Notion</text>
+          <circle cx="330" cy="118" r="22" fill="#101820" stroke="#1a4060"/>
+          <text x="330" y="114" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="9" font-weight="600">📋</text>
+          <text x="330" y="126" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Notion</text>
+          <circle cx="330" cy="203" r="22" fill="#101820" stroke="#1a4060"/>
+          <text x="330" y="199" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="9" font-weight="600">📋</text>
+          <text x="330" y="211" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Notion</text>
+          <circle cx="330" cy="258" r="22" fill="#101820" stroke="#1a4060"/>
+          <text x="330" y="254" text-anchor="middle" fill="#5b9fff" font-family="Instrument Sans" font-size="9" font-weight="600">📋</text>
+          <text x="330" y="266" text-anchor="middle" fill="#6b7490" font-family="Instrument Sans" font-size="8">Notion</text>
+        </svg>
       </div>
     </div>
 
-    <!-- Step 5 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">5</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">🔀 Switch by Platform</span>
-          <span class="step-badge">Switch Node</span>
-        </div>
-        <p class="step-desc">Reads the Platform field and routes each item to the correct publishing node. Facebook posts go one way, Instagram posts go another. Only two output paths are needed.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add a <code>Switch</code> node → set Mode to <code>Rules</code> → Rule 1: <code>{{ $json.Platform }}</code> equals <code>Facebook</code> → Route 1. Rule 2: <code>{{ $json.Platform }}</code> equals <code>Instagram</code> → Route 2. Connect Route 1 to the Facebook node and Route 2 to the Instagram node.
-          </div>
-        </div>
-      </div>
-    </div>
+  </div><!-- /workflow-list -->
+</div><!-- /section-wrap -->
 
-    <!-- Step 6a -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">6a</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">📘 Post to Facebook</span>
-          <span class="step-badge">HTTP Request Node</span>
-        </div>
-        <p class="step-desc">Publishes the AI-generated caption to your Facebook Page using the Facebook Graph API. Requires a Facebook Page Access Token with <code>pages_manage_posts</code> permission.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add an <code>HTTP Request</code> node → Method: <code>POST</code> → URL: <code>https://graph.facebook.com/v19.0/YOUR_PAGE_ID/feed</code> → Body Parameters: <code>message</code> = <code>{{ $json.choices[0].message.content }}</code>, <code>access_token</code> = your Page Token. The API returns a post ID on success.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 6b -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">6b</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">📸 Post to Instagram</span>
-          <span class="step-badge">HTTP Request Node</span>
-        </div>
-        <p class="step-desc">Publishes to your Instagram Business Account via the Meta Graph API. Instagram requires a two-step process: first create a media container, then publish it.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Step A — <code>POST</code> to <code>https://graph.facebook.com/v19.0/YOUR_IG_ID/media</code> with <code>caption</code> and <code>image_url</code> fields. Get the <code>creation_id</code> from the response. Step B — <code>POST</code> to <code>/media_publish</code> with <code>creation_id</code>. Both calls use the same Instagram Access Token.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 7 -->
-    <div class="step-item">
-      <div class="step-num-wrap"><div class="step-num">7</div></div>
-      <div class="step-body">
-        <div class="step-header">
-          <span class="step-title">✅ Log to Google Sheets</span>
-          <span class="step-badge">Google Sheets Node</span>
-        </div>
-        <p class="step-desc">After publishing, this node updates the original row in your content calendar. It marks Status as "Published", writes the timestamp, and saves the post ID — giving you a full audit trail.</p>
-        <div class="step-how">
-          <div class="step-how-label">How to configure it</div>
-          <div class="step-how-text">
-            Add a <code>Google Sheets</code> node → Operation: <code>Update Row</code> → match the row by <code>Row Number</code> → set <code>Status</code> = <code>Published</code>, <code>Published At</code> = <code>{{ $now }}</code>, <code>Post ID</code> = the ID returned from the platform API. Both Facebook and Instagram paths merge into this single node.
-          </div>
-        </div>
-      </div>
-    </div>
-
+<!-- HOW IT WORKS -->
+<div class="section-wrap" id="howto" style="padding-top:80px">
+  <div class="section-header reveal">
+    <div class="section-tag">Process</div>
+    <h2 class="section-title">How I Build Automations</h2>
+    <p class="section-sub">Every workflow follows the same battle-tested process — from understanding the business problem to handing over a live, tested system.</p>
   </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- OUTCOMES -->
-<section id="outcomes">
-  <div class="section-label">Business Value</div>
-  <h2>What This Delivers</h2>
-  <p class="section-intro">Built for small businesses that want consistent Facebook and Instagram presence without hiring a dedicated social media manager.</p>
-  <div class="outcomes">
-    <div class="outcome-card"><div class="outcome-value">2×</div><div class="outcome-label">Platforms published simultaneously</div></div>
-    <div class="outcome-card"><div class="outcome-value">0</div><div class="outcome-label">Manual posting required daily</div></div>
-    <div class="outcome-card"><div class="outcome-value">~2h</div><div class="outcome-label">Saved per week vs manual work</div></div>
-    <div class="outcome-card"><div class="outcome-value">100%</div><div class="outcome-label">Post history logged automatically</div></div>
+  <div class="howto-section reveal">
+    <div class="howto-header">
+      <div class="howto-title">From Brief to Live Workflow in 5 Steps</div>
+      <div class="howto-sub">No fluff, no templates — every automation is scoped, built, and tested to fit your exact process.</div>
+    </div>
+    <div class="howto-grid">
+      <div class="howto-step">
+        <div class="howto-num">01</div>
+        <div class="howto-step-title">Scope & Map the Process</div>
+        <div class="howto-step-desc">I document exactly what data comes in, where it needs to go, and what decisions need to be made automatically — no assumptions.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">02</div>
+        <div class="howto-step-title">Choose the Right Tool</div>
+        <div class="howto-step-desc">n8n for complex logic, self-hosted, zero fees. Make.com for rapid multi-app connectors. Zapier for simple point-to-point. Always matched to the budget.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">03</div>
+        <div class="howto-step-title">Build Node by Node</div>
+        <div class="howto-step-desc">Every node is configured, connected, and tested individually before wiring into the full flow. Switch/Router logic is mapped to every possible edge case.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">04</div>
+        <div class="howto-step-title">Test With Real Data</div>
+        <div class="howto-step-desc">I run live executions with real form submissions, real email addresses, and real API calls — not mock data. Errors are caught and fixed before handover.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">05</div>
+        <div class="howto-step-title">Document & Hand Over</div>
+        <div class="howto-step-desc">Every workflow gets a step-by-step guide like the one on this site — so the client or their team can understand, maintain, and modify it independently.</div>
+      </div>
+      <div class="howto-step">
+        <div class="howto-num">06</div>
+        <div class="howto-step-title">Ongoing Support</div>
+        <div class="howto-step-desc">API changes, new routes, additional platforms — I stay available to extend and maintain the workflow as the business grows and evolves.</div>
+      </div>
+    </div>
   </div>
-</section>
-
-<div class="divider"></div>
+</div>
 
 <!-- CTA -->
-<section id="contact" style="padding-bottom: 20px;">
-  <div class="cta-section">
-    <div class="section-label" style="text-align:center; margin-bottom:12px;">Let's Work Together</div>
-    <h2>Need automation like this<br/>for your business?</h2>
-    <p>I build custom n8n workflows tailored to your exact process — no bloated software, no recurring SaaS fees. Ask the AI assistant below any questions about this workflow.</p>
-    <div class="btn-group">
-      <a class="btn btn-primary" href="mailto:jallilmutalib@gmail.com">Get in Touch</a>
-      <a class="btn btn-outline" href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">View Full Portfolio</a>
+<div class="section-wrap" style="padding:40px 48px 100px">
+  <div class="reveal" style="background:linear-gradient(135deg,rgba(74,240,176,0.06) 0%,rgba(91,159,255,0.06) 100%);border:1px solid var(--border);border-radius:20px;padding:64px 56px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px">Ready to Automate?</div>
+      <h2 style="font-family:var(--serif);font-size:clamp(24px,3.5vw,34px);font-weight:800;letter-spacing:-0.5px;color:var(--text);margin-bottom:12px;line-height:1.2">Need a workflow like these<br/>built for your business?</h2>
+      <p style="font-size:15px;color:var(--muted2);max-width:420px;line-height:1.75">I build custom n8n and Make.com automations tailored to your exact process — no bloated SaaS, no recurring fees.</p>
     </div>
-  </div>
-</section>
-
-<footer>
-  Built by <a href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">Jallil Mutalib</a> — VA &amp; AI Automation Specialist · Santa Rosa, Laguna, Philippines
-</footer>
-
-<!-- AI CHAT BUTTON -->
-<button id="ai-chat-btn" onclick="toggleChat()" title="Ask the AI assistant">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.5 21.5l4.332-.938A9.954 9.954 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1 13H8v-2h3v2zm5 0h-3v-2h3v2zm0-4H8V9h8v2z"/>
-  </svg>
-  <span class="notif">AI</span>
-</button>
-
-<!-- AI CHAT PANEL -->
-<div id="ai-chat-panel">
-  <div class="chat-header">
-    <div class="chat-avatar">🤖</div>
-    <div class="chat-header-info">
-      <div class="chat-name">Workflow Assistant</div>
-      <div class="chat-status">Online — ask me anything</div>
+    <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0">
+      <a href="mailto:jallilmutalib@gmail.com" class="btn btn-primary" style="white-space:nowrap">📩 Get in Touch</a>
+      <a href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank" class="btn btn-ghost" style="white-space:nowrap;text-align:center">View Full Portfolio</a>
     </div>
-    <button id="chat-close" onclick="toggleChat()">×</button>
-  </div>
-
-  <div id="chat-messages">
-    <div class="msg bot">
-      <div class="msg-icon">🤖</div>
-      <div class="msg-bubble">Hi! I'm Jallil's workflow assistant. I can answer any questions about this Social Media Scheduling automation — how it works, how to set it up, costs, customisation, and more. What would you like to know?</div>
-    </div>
-  </div>
-
-  <div class="chat-suggestions">
-    <button class="sug-btn" onclick="sendSuggestion('How does the AI caption generator work?')">How does the AI work?</button>
-    <button class="sug-btn" onclick="sendSuggestion('What does each node in the workflow do?')">Node breakdown</button>
-    <button class="sug-btn" onclick="sendSuggestion('How much does this cost to run?')">Cost to run?</button>
-    <button class="sug-btn" onclick="sendSuggestion('Can I add more platforms like TikTok?')">Add TikTok?</button>
-  </div>
-
-  <div class="chat-input-row">
-    <input id="chat-input" type="text" placeholder="Ask about this workflow..." onkeydown="if(event.key==='Enter') sendMessage()"/>
-    <button id="chat-send" onclick="sendMessage()">
-      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-    </button>
   </div>
 </div>
 
+<footer>
+  <div class="footer-left">Built by <a href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">Jallil Mutalib</a> — VA & AI Automation Specialist · Santa Rosa, Laguna, Philippines</div>
+  <div class="footer-links">
+    <a href="https://jallilmutalib.github.io/Social-Media-Workflow/" target="_blank">Social Media Workflow</a>
+    <a href="https://jallilmutalib.github.io/JALLIL-PORTFOLIO/" target="_blank">Portfolio</a>
+    <a href="mailto:jallilmutalib@gmail.com">Email</a>
+  </div>
+</footer>
+
 <script>
-const SYSTEM_PROMPT = `You are a helpful AI assistant embedded on Jallil Mutalib's portfolio page. Jallil is a freelance Virtual Assistant and AI Automation Specialist based in Santa Rosa, Laguna, Philippines. He built this Social Media Scheduling Automation using n8n (self-hosted).
-
-The workflow has 6 nodes:
-1. Schedule Trigger — fires daily at 9 AM using a cron expression (0 9 * * *)
-2. Google Sheets (Read) — fetches rows where Status = "Pending" from a content calendar
-3. SplitInBatches (Loop) — processes one row at a time to avoid API rate limits
-4. OpenAI GPT-4o — generates platform-optimised captions based on Topic, Platform, and Tone fields
-5. Switch Node — routes to Facebook (Graph API) or Instagram (Meta Graph API) based on the Platform field
-6a. HTTP Request (Facebook) — POSTs to the Facebook Graph API using a Page Access Token
-6b. HTTP Request (Instagram) — two-step: create media container then publish via Meta Graph API
-7. Google Sheets (Update) — marks the row as "Published", logs timestamp and post ID
-
-The workflow does NOT include LinkedIn or Twitter/X — only Facebook and Instagram.
-
-n8n is self-hosted locally (localhost:5678) so there are no monthly n8n fees. Only API costs apply:
-- OpenAI GPT-4o: ~$0.01-0.05 per post generation
-- Facebook/Instagram APIs: free (Meta Graph API)
-- Google Sheets API: free
-
-Jallil can customise this workflow for any business. He can add more platforms, change posting schedules, adjust AI prompts, or connect to other tools like Notion, Airtable, or Slack.
-
-Answer questions about this workflow clearly and helpfully. Be concise. If asked about hiring Jallil or getting help, direct them to jallilmutalib@gmail.com. Keep answers under 120 words unless the question requires more detail.`;
-
-let chatHistory = [];
-let chatOpen = false;
-
-function toggleChat() {
-  chatOpen = !chatOpen;
-  document.getElementById('ai-chat-panel').classList.toggle('open', chatOpen);
-  if (chatOpen) document.getElementById('chat-input').focus();
-}
-
-function sendSuggestion(text) {
-  document.getElementById('chat-input').value = text;
-  sendMessage();
-}
-
-async function sendMessage() {
-  const input = document.getElementById('chat-input');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-
-  addMessage('user', text);
-  chatHistory.push({ role: 'user', content: text });
-
-  const typingId = addTyping();
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: chatHistory
-      })
-    });
-    const data = await response.json();
-    removeTyping(typingId);
-
-    const reply = data.content?.[0]?.text || "Sorry, I couldn't get a response. Please try again.";
-    addMessage('bot', reply);
-    chatHistory.push({ role: 'assistant', content: reply });
-  } catch (e) {
-    removeTyping(typingId);
-    addMessage('bot', "Something went wrong connecting to the AI. Please try again in a moment.");
-  }
-}
-
-function addMessage(role, text) {
-  const msgs = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = 'msg ' + role;
-  div.innerHTML = role === 'bot'
-    ? `<div class="msg-icon">🤖</div><div class="msg-bubble">${escapeHtml(text)}</div>`
-    : `<div class="msg-bubble">${escapeHtml(text)}</div>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return div;
-}
-
-function addTyping() {
-  const msgs = document.getElementById('chat-messages');
-  const id = 'typing-' + Date.now();
-  const div = document.createElement('div');
-  div.className = 'msg bot'; div.id = id;
-  div.innerHTML = '<div class="msg-icon">🤖</div><div class="msg-bubble typing"><span></span><span></span><span></span></div>';
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-  return id;
-}
-
-function removeTyping(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
-}
-
-function escapeHtml(text) {
-  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br/>');
-}
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
